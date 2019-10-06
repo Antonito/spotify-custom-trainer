@@ -1,0 +1,20 @@
+{
+  "name": "spotify-custom-trainer",
+  "version": "1.0.0",
+  "description": "Chrome Extension that allows you to change the speed and pitch of songs on Spotify Web App",
+  "main": "dist/index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "raw-loader": "^3.1.0",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9"
+  },
+  "scripts": {
+    "build-injected": "webpack ./src/injected/ --config 'spotify.webpack.config.js'",
+    "build-injector": "webpack src/ --config 'webpack.config.js'",
+    "build": "npm run build-injected && npm run build-injector && rm -f ./dist/spotify-custom.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "antoine.bache@epitech.eu",
+  "license": "ISC"
+}

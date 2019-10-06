@@ -1,0 +1,15 @@
+{
+    "name": "Spotify Custom Trainer",
+    "description": "Adds song controls (speed & pitch shifter) to Spotify Web app",
+    "version": "1.0",
+    "permissions": [
+      "storage"
+    ],
+    "content_scripts": [
+      {
+        "matches": ["https://open.spotify.com/*"],
+        "js": ["./dist/index.js"]
+      }
+    ],
+    "manifest_version": 2
+  }
