@@ -2,7 +2,7 @@
 
 `spotify-custom-trainer` is a Chrome extension that allows you to change the speed and the pitch of songs, on Spotify web app.
 
-This can be helpful for musician, who want to learn new songs.
+This can be helpful for musicians, who want to learn new songs.
 
 ## Build
 
