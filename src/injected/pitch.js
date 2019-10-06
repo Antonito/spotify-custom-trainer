@@ -3,6 +3,10 @@ import { spotifyMediaElements } from './createElement';
 const defaultPitch = 0.0;
 let lastPitch = defaultPitch;
 
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+let sources = [];
+
 export const getLastPitch = () => lastPitch;
 
 export const update = (newPitch) => {
@@ -13,6 +17,19 @@ export const update = (newPitch) => {
     if (spotifyMediaElements[ndx].webkitPreservesPitch !== undefined) {
         spotifyMediaElements[ndx].webkitPreservesPitch = true
     }
+
+    if (!sources[ndx]) {
+      const mediaSrc = audioCtx.createMediaElementSource(spotifyMediaElements[ndx]);
+      sources[ndx] = audioCtx.createBiquadFilter();
+      sources[ndx].type = 'allpass';
+      // found out about detune here: http://chimera.labs.oreilly.com/books/1234000001552/ch04.html
+      mediaSrc.connect(sources[ndx]);
+
+      sources[ndx].connect(audioCtx.destination);
+    }
+
+    const source = sources[ndx];
+    source.detune.value = newPitch;
 
     if (newPitch !== lastPitch) {
         lastPitch = newPitch;
